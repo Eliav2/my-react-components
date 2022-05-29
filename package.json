@@ -9,7 +9,6 @@
     "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
-    "react-delay-renders-component": "*",
     "react-true-resizable": "*",
     "shared": "*"
   },
@@ -18,7 +17,10 @@
     "@babel/core": "^7.17.10",
     "@babel/preset-flow": "^7.16.7",
     "@bunchtogether/vite-plugin-flow": "^1.0.2",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@mdx-js/react": "^2.1.1",
+    "@mui/material": "^5.8.1",
     "@storybook/addon-essentials": "^6.4.22",
     "@storybook/addon-interactions": "^6.4.22",
     "@storybook/addon-links": "^6.4.22",
@@ -33,6 +35,7 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
     "babel-loader": "^8.2.5",
+    "concurrently": "^7.2.1",
     "flow-bin": "^0.178.0",
     "prettier": "^2.6.2",
     "react": "^18.0.0",
