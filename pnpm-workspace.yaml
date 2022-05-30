@@ -1,6 +1,4 @@
 packages:
   - 'packages/**'
-  - './'
-  - 'site'
   # exclude packages that are inside test directories
   - '!**/src/test/**'
