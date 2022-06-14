@@ -76,6 +76,7 @@ importers:
   packages/react-true-resizable:
     specifiers:
       lodash: ^4.17.21
+      react-docgen: ^5.4.1
       react-draggable: ^4.4.5
       react-fast-compare: ^3.2.0
       typedoc: ^0.22.17
@@ -83,6 +84,7 @@ importers:
       lodash: 4.17.21
       react-fast-compare: 3.2.0
     devDependencies:
+      react-docgen: 5.4.1
       react-draggable: 4.4.5_react-dom@17.0.2+react@17.0.2
       typedoc: 0.22.17_typescript@4.6.4
 
@@ -100,6 +102,7 @@ importers:
       '@tsconfig/docusaurus': ^1.0.5
       clsx: ^1.1.1
       docusaurus: ^1.14.7
+      docusaurus-plugin-react-docgen: ^0.0.2
       docusaurus-plugin-react-docgen-typescript: ^0.1.0
       docz: ^2.4.0
       html-loader: ^3.1.0
@@ -137,6 +140,7 @@ importers:
       '@docusaurus/module-type-aliases': 2.0.0-beta.20_react-dom@17.0.2+react@17.0.2
       '@tsconfig/docusaurus': 1.0.5
       docusaurus: 1.14.7
+      docusaurus-plugin-react-docgen: 0.0.2_react-docgen@5.4.1
       docusaurus-plugin-react-docgen-typescript: 0.1.0_cf62c0672603fd708bf7c3b9e9dd14fe
       docz: 2.4.0_f98bade86abbbdab5a462d5627e264fa
       html-loader: 3.1.0_webpack@5.72.1
@@ -9553,6 +9557,16 @@ packages:
       globby: 11.1.0
       react: 17.0.2
       react-docgen-typescript: 2.2.2_typescript@4.6.4
+    dev: true
+
+  /docusaurus-plugin-react-docgen/0.0.2_react-docgen@5.4.1:
+    resolution: {integrity: sha512-KTDzFJWhdXSG98MOZh78K4PNK/jUNwb6C1b8h0KoCVvUtmF/mIIXROxB7A2W0oB/NXxq2ktUHjb7g99jhxudjA==}
+    peerDependencies:
+      react-docgen: ^5.0.0
+    dependencies:
+      globby: 11.1.0
+      joi: 17.6.0
+      react-docgen: 5.4.1
     dev: true
 
   /docusaurus/1.14.7:
