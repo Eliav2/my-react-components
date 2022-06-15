@@ -16,6 +16,7 @@ const posAttrs = ["left", "top", "right", "bottom", "width", "height"] as const;
  * also - return the last remembered position of the element if it's not in the DOM
  */
 const usePosition = (elementRef: HTMLElement | null, dependencies?): positionType => {
+  // console.log("usePosition");
   const [position, setPosition] = useState<positionType | null>(null);
 
   useLayoutEffect(() => {
