@@ -1,6 +1,6 @@
-type AnyObj = { [key: string]: any };
-
 /** clones deep object that DOES NOT CONTAIN FUNCTION VALUES IN IT */
+import { AnyObj, PossiblyReadOnly } from "./types";
+
 export const cloneDeepNoFunction = <T extends AnyObj>(obj: T): T => {
   if (obj === undefined) return obj;
   return JSON.parse(JSON.stringify(obj));
@@ -26,3 +26,17 @@ export function mergeRecursive(obj1: AnyObj, obj2: AnyObj) {
 
   return obj1;
 }
+
+/** picks specified properties from object */
+export const pick = <T extends AnyObj, K extends keyof T>(
+  obj: PossiblyReadOnly<T>,
+  props: PossiblyReadOnly<K[]>
+): {
+  [key in K]: T[key];
+} => {
+  const newObj: T = {} as T;
+  props.forEach((prop) => {
+    newObj[prop] = obj[prop];
+  });
+  return newObj;
+};

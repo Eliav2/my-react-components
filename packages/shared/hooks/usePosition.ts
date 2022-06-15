@@ -1,6 +1,7 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import { pick } from "lodash";
+import { useLayoutEffect, useState } from "react";
 import isEqual from "react-fast-compare";
+import { pick } from "../utils";
+
 export type positionType = {
   left: number;
   top: number;
@@ -29,16 +30,3 @@ const usePosition = (elementRef: HTMLElement | null, dependencies?): positionTyp
   return position;
 };
 export default usePosition;
-
-// const usePosition = (elementRef: HTMLElement | null, dependencies?): positionType => {
-//   const [position, setPosition] = useState<positionType | null>(null);
-//   let c = position ?? {};
-//   useEffect(() => {
-//     if (!elementRef || typeof elementRef != "object" || !("getBoundingClientRect" in elementRef)) return;
-//     const currentPos = pick(elementRef.getBoundingClientRect(), posAttrs);
-//     if (!isEqual(position, currentPos)) {
-//       setPosition(currentPos);
-//     }
-//   }, [c.left, c.top, c.right, c.bottom, c.width, c.height, ...(dependencies ?? [])]);
-//   return position;
-// };
