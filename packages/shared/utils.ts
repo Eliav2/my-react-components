@@ -9,21 +9,25 @@ export const cloneDeepNoFunction = <T extends AnyObj>(obj: T): T => {
 /**
  * Recursively merge properties of two objects
  */
-export function mergeRecursive(obj1: AnyObj, obj2: AnyObj) {
+export function mergeRecursive<T extends AnyObj, T2 extends AnyObj>(obj1: T, obj2: T2): T & T2 {
+  // console.log("mergeRecursive");
   for (const p in obj2) {
     try {
       // Property in destination object set; update its value.
       if (obj2[p].constructor == Object) {
         obj1[p] = mergeRecursive(obj1[p], obj2[p]);
       } else {
+        // @ts-ignore
         obj1[p] = obj2[p];
       }
     } catch (e) {
       // Property in destination object not set; create it and set its value.
+      // @ts-ignore
       obj1[p] = obj2[p];
     }
   }
 
+  // @ts-ignore
   return obj1;
 }
 
