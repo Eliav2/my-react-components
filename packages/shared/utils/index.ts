@@ -1,6 +1,7 @@
 /** clones deep object that DOES NOT CONTAIN FUNCTION VALUES IN IT */
-import { AnyObj, Expand, makeWriteable, PossiblyReadOnly, Writeable } from "./types";
+import type { AnyObj, Expand, PossiblyReadOnly, Writeable } from "../types";
 
+/** fast deep clone on json-serializable object (functions inside this object not suppoerted) */
 export const cloneDeepNoFunction = <T extends AnyObj>(obj: T): T => {
   if (obj === undefined) return obj;
   return JSON.parse(JSON.stringify(obj));
@@ -44,5 +45,5 @@ export const pick = <T extends AnyObj, K extends keyof T>(
   props.forEach((prop) => {
     newObj[prop] = obj[prop];
   });
-  return newObj;
+  return newObj as any;
 };
