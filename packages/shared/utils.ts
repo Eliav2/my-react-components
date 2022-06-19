@@ -1,5 +1,5 @@
 /** clones deep object that DOES NOT CONTAIN FUNCTION VALUES IN IT */
-import { AnyObj, PossiblyReadOnly } from "./types";
+import { AnyObj, Expand, makeWriteable, PossiblyReadOnly, Writeable } from "./types";
 
 export const cloneDeepNoFunction = <T extends AnyObj>(obj: T): T => {
   if (obj === undefined) return obj;
@@ -35,9 +35,11 @@ export function mergeRecursive<T extends AnyObj, T2 extends AnyObj>(obj1: T, obj
 export const pick = <T extends AnyObj, K extends keyof T>(
   obj: PossiblyReadOnly<T>,
   props: PossiblyReadOnly<K[]>
-): {
-  [key in K]: T[key];
-} => {
+): Expand<
+  Writeable<{
+    [key in K]: T[key];
+  }>
+> => {
   const newObj: T = {} as T;
   props.forEach((prop) => {
     newObj[prop] = obj[prop];
