@@ -1,6 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import isEqual from "react-fast-compare";
 import { pick } from "../utils";
+import useRerender from "./useRerender";
 
 export type positionType = {
   left: number;
@@ -17,16 +18,23 @@ const posAttrs = ["left", "top", "right", "bottom", "width", "height"] as const;
  */
 const usePosition = (elementRef: HTMLElement | null, dependencies?): positionType => {
   // console.log("usePosition");
+  const render = useRerender();
   const [position, setPosition] = useState<positionType | null>(null);
+
+  useLayoutEffect(() => {
+    render();
+  }, [elementRef]);
 
   useLayoutEffect(() => {
     if (!elementRef || typeof elementRef != "object" || !("getBoundingClientRect" in elementRef)) return;
     const currentPos = pick(elementRef.getBoundingClientRect(), posAttrs);
+
     // console.log(currentPos);
     if (!isEqual(position, currentPos)) {
       setPosition(currentPos);
     }
   }, dependencies);
+
   // }, [elementRef, c.left, c.top, c.right, c.bottom, c.width, c.height]);
   return position;
 };
