@@ -4,11 +4,19 @@ export type PossiblySpecific<Prop, Spec extends string> = Prop | { [key in Spec]
 
 /**
  * will always return a more specific type than the default
+ * used to spread a prop to a more primitive type
  * @param prop - prop supplied by the used
  * @param fields
  * @param defaultValue
  *
+ *
  * example:
+ *  let's say we have a prop named 'grid' with type of `boolean|{horizontal?: boolean, vertical?: boolean}`, meaning
+ *  that when 'grid' is a boolean both axes are set to the same value, but when it's an object, the horizontal and vertical
+ *  axes are set to the values specified in the object.
+ *  running parsePossiblySpecific(grid, ['horizontal', 'vertical'], false) will parse this prop return a parsed object
+ *  of type `{horizontal?: boolean, vertical?: boolean}`.
+ *
  * - parsePossiblySpecific(10, ["horizontal"]) => { horizontal: 10 }
  * - parsePossiblySpecific(10, ["horizontal", "vertical"]) => { horizontal: 10, vertical: 10 }
  * - parsePossiblySpecific(null, ["horizontal"],5) => { horizontal: 5 }

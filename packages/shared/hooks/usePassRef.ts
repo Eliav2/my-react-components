@@ -13,7 +13,7 @@ import React, { useRef } from "react";
 const usePassRef = <T extends any = any>(children): React.RefObject<T> => {
   const nodeRef = useRef<T>(null);
   let passRef = nodeRef;
-  React.Children.only(children);
+  // React.Children.only(children);
   if (children?.ref && "current" in children.ref) {
     // @ts-ignore
     // if it has ref, set the ref to the given ref
