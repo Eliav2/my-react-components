@@ -22,4 +22,18 @@ const usePassRef = <T extends any = any>(children): React.RefObject<T> => {
   }
   return passRef;
 };
+
+const usePassElem = <T extends any = any>(children): React.RefObject<T> => {
+  const nodeRef = useRef<T>(null);
+  let passRef = nodeRef;
+  // React.Children.only(children);
+  if (children?.ref && "current" in children.ref) {
+    // @ts-ignore
+    // if it has ref, set the ref to the given ref
+    nodeRef.current = children.ref.current;
+    passRef = children.ref;
+  }
+  return passRef;
+};
+
 export default usePassRef;
