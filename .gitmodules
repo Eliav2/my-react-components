@@ -1,3 +1,6 @@
 [submodule "packages/react-true-resizable"]
 	path = packages/react-true-resizable
 	url = https://github.com/Eliav2/react-true-resizable
+[submodule "packages/react-xarrows"]
+	path = packages/react-xarrows
+	url = https://github.com/Eliav2/react-xarrows
