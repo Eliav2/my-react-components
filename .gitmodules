@@ -1,6 +1,3 @@
-[submodule "my-react-components"]
-	path = my-react-components
-	url = https://github.com/Eliav2/my-react-components
 [submodule "packages/react-true-resizable"]
 	path = packages/react-true-resizable
 	url = https://github.com/Eliav2/react-true-resizable
