@@ -35,7 +35,7 @@ const usePosition = (elementRef: HTMLElement | null, dependencies?): positionTyp
     }
   }, dependencies);
 
-  // }, [elementRef, c.left, c.top, c.right, c.bottom, c.width, c.height]);
-  return position;
+  const decoupledPosition = position && { ...position };
+  return decoupledPosition;
 };
 export default usePosition;
