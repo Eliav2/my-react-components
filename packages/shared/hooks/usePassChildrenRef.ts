@@ -10,15 +10,28 @@ import React, { useRef } from "react";
  *
  * @param children - child of the component
  */
-const usePassRef = <T extends any = any>(children): React.RefObject<T> => {
+const usePassChildrenRef = <T extends any = any>(children): React.RefObject<T> => {
   const nodeRef = useRef<T>(null);
   let passRef = nodeRef;
-  // React.Children.only(children);
+  // React.Children.only(children); // optionally, this will throw error if there are more than one child
   if (children?.ref && "current" in children.ref) {
     // @ts-ignore
     // if it has ref, set the ref to the given ref
     nodeRef.current = children.ref.current;
     passRef = children.ref;
+  }
+  return passRef;
+};
+
+export const usePassRef = <T extends any = any>(ref): React.RefObject<T> => {
+  const nodeRef = useRef<T>(null);
+  let passRef = nodeRef;
+  // React.Children.only(children); // optionally, this will throw error if there are more than one child
+  if (ref && "current" in ref) {
+    // @ts-ignore
+    // if it has ref, set the ref to the given ref
+    nodeRef.current = ref.current;
+    passRef = ref;
   }
   return passRef;
 };
@@ -36,4 +49,4 @@ const usePassElem = <T extends any = any>(children): React.RefObject<T> => {
   return passRef;
 };
 
-export default usePassRef;
+export default usePassChildrenRef;

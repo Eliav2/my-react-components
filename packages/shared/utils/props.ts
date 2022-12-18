@@ -4,7 +4,7 @@ export type PossiblySpecific<Prop, Spec extends string> = Prop | { [key in Spec]
 
 /**
  * will always return a more specific type than the default
- * used to spread a prop to a more primitive type
+ * used to spread a prop to a more specific type
  * @param prop - prop supplied by the used
  * @param fields
  * @param defaultValue
