@@ -10,13 +10,13 @@ export type positionType = {
   bottom: number;
   width: number;
   height: number;
-} | null;
+};
 const posAttrs = ["left", "top", "right", "bottom", "width", "height"] as const;
 /**
  * returns position of an element along with a reference to the element
  * also - return the last remembered position of the element if it's not in the DOM
  */
-const usePosition = (elementRef: HTMLElement | null, dependencies?): positionType => {
+const usePosition = (elementRef: HTMLElement | null, dependencies?): positionType | null => {
   // console.log("usePosition");
   const render = useRerender();
   const [position, setPosition] = useState<positionType | null>(null);
