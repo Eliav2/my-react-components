@@ -4,3 +4,6 @@
 [submodule "packages/react-xarrows"]
 	path = packages/react-xarrows
 	url = https://github.com/Eliav2/react-xarrows
+[submodule "packages/react-xarrows-pro"]
+	path = packages/react-xarrows-pro
+	url = https://github.com/Eliav2/react-xarrows-pro
