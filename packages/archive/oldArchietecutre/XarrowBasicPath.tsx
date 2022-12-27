@@ -1,7 +1,7 @@
-import React from 'react';
-import { XElementType } from '../../src/privateTypes';
-import { getPathState, getPathStateType, simplePosType } from '../../src/utils/XarrowUtils';
-import { Vector } from '../../src/classes/classes';
+import React from "react";
+import { XElementType } from "../../src/privateTypes";
+import { getPathState, getPathStateType, simplePosType } from "../../src/utils/XarrowUtils";
+import { Vector } from "../../src/classes/classes";
 
 export interface XarrowBasicPropsAPI {
   strokeWidth?: number;
@@ -13,9 +13,7 @@ export interface XarrowBasicProps extends XarrowBasicPropsAPI {
   rootElem: XElementType;
   // arrowBodyProps?: SVGProps<SVGPathElement>;
 
-  children?: (
-    state: getPathStateType<simplePosType, `M ${number} ${number} L ${number} ${number}`>
-  ) => React.ReactElement;
+  children?: (state: getPathStateType<simplePosType, `M ${number} ${number} L ${number} ${number}`>) => React.ReactElement;
 }
 
 /**
@@ -55,7 +53,7 @@ export const getPosition = (startElem: XElementType, endElem: XElementType, root
   // return posSt;
   return getPathState(
     (pos) => pos,
-    (pos) => `M ${pos.start.x} ${pos.start.y} L ${pos.end.x} ${pos.end.y}` as const,
+    (pos) => `M ${pos.startPoint.x} ${pos.startPoint.y} L ${pos.endPoint.x} ${pos.endPoint.y}` as const,
     posSt
   );
 };

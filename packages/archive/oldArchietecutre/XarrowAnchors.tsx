@@ -1,18 +1,11 @@
-import React, { useMemo } from 'react';
-import PT from 'prop-types';
-import { cAnchorEdge } from '../constants';
-import { anchorEdgeType, Contains, containsPointType, PlainObject, posType, XElementType } from '../privateTypes';
-import { getShortestLine, isPercentStr, isRelativeOrAbsStr, choosenAnchorType, xStr2absRelative } from '../utils';
-import {
-  anchorCustomPositionType,
-  anchorNamedType,
-  anchorType,
-  partialXarrowProps,
-  refType,
-  relativeOrAbsStr,
-} from '../types';
-import _ from 'lodash';
-import { getPathStateType, simplePosType } from '../utils/XarrowUtils';
+import React, { useMemo } from "react";
+import PT from "prop-types";
+import { cAnchorEdge } from "../constants";
+import { anchorEdgeType, Contains, containsPointType, PlainObject, posType, XElementType } from "../privateTypes";
+import { getShortestLine, isPercentStr, isRelativeOrAbsStr, choosenAnchorType, xStr2absRelative } from "../utils";
+import { anchorCustomPositionType, anchorNamedType, anchorType, partialXarrowProps, refType, relativeOrAbsStr } from "../types";
+import _ from "lodash";
+import { getPathStateType, simplePosType } from "../utils/XarrowUtils";
 
 export interface XarrowAnchorsPropsAPI {
   startAnchor?: anchorType;
@@ -25,10 +18,7 @@ export interface XarrowAnchorsProps extends XarrowAnchorsPropsAPI, partialXarrow
   endElem: XElementType;
   getPathState: getPathStateType<simplePosType, `M ${number} ${number} L ${number} ${number}`>;
 
-  children?: (
-    posState: getPathStateType,
-    anchors: { chosenStart: choosenAnchorType; chosenEnd: choosenAnchorType }
-  ) => React.ReactElement;
+  children?: (posState: getPathStateType, anchors: { chosenStart: choosenAnchorType; chosenEnd: choosenAnchorType }) => React.ReactElement;
 }
 
 /**
@@ -47,10 +37,10 @@ const XarrowAnchors: React.FC<XarrowAnchorsProps> = (props) => {
 
   // alter the state - offset connection points to the selected anchors
   let newGetPath: getPathStateType = props.getPathState((posSt) => {
-    posSt.start.x += chosenStart.x - props.startElem.position.x;
-    posSt.start.y += chosenStart.y - props.startElem.position.y;
-    posSt.end.x += chosenEnd.x - props.endElem.position.x;
-    posSt.end.y += chosenEnd.y - props.endElem.position.y;
+    posSt.startPoint.x += chosenStart.x - props.startElem.position.x;
+    posSt.startPoint.y += chosenStart.y - props.startElem.position.y;
+    posSt.endPoint.x += chosenEnd.x - props.endElem.position.x;
+    posSt.endPoint.y += chosenEnd.y - props.endElem.position.y;
     return posSt;
   });
 
@@ -81,14 +71,14 @@ XarrowAnchors.propTypes = {
   endAnchor: pAnchorType,
 };
 XarrowAnchors.defaultProps = {
-  startAnchor: 'auto',
-  endAnchor: 'auto',
+  startAnchor: "auto",
+  endAnchor: "auto",
 };
 
 // remove 'auto' as possible anchor from anchorCustomPositionType.position
-export interface parsedAnchorType extends Omit<Required<anchorCustomPositionType>, 'position'> {
+export interface parsedAnchorType extends Omit<Required<anchorCustomPositionType>, "position"> {
   // position: anchorEdgeType;
-  position: Exclude<anchorNamedType, 'auto'>;
+  position: Exclude<anchorNamedType, "auto">;
 }
 
 export const parseAnchor = (anchor: anchorType) => {
@@ -98,19 +88,19 @@ export const parseAnchor = (anchor: anchorType) => {
 
   //convert to array of objects
   let anchorChoice2 = anchorChoice.map((anchorChoice) => {
-    if (typeof anchorChoice !== 'object') {
+    if (typeof anchorChoice !== "object") {
       const obj: { position: anchorNamedType; offset?: { sidewards: relativeOrAbsStr } } = {
         position: anchorChoice as anchorNamedType,
       };
       if (isRelativeOrAbsStr(anchorChoice)) {
-        obj.position = 'auto';
-        _.set(obj, 'offset.sidewards', anchorChoice);
+        obj.position = "auto";
+        _.set(obj, "offset.sidewards", anchorChoice);
         // obj.offset.sidewards = anchorChoice;
       }
       return obj;
     } else {
       // it's object
-      if (!('position' in anchorChoice)) anchorChoice.position = 'auto';
+      if (!("position" in anchorChoice)) anchorChoice.position = "auto";
       return anchorChoice;
     }
   });
@@ -119,15 +109,15 @@ export const parseAnchor = (anchor: anchorType) => {
   anchorChoice2 = anchorChoice2.filter(
     (an) => (_.isString(an) && isPercentStr(an)) || (_.isObject(an) && cAnchorEdge.includes(an?.position))
   );
-  if (anchorChoice2.length == 0) anchorChoice2 = [{ position: 'auto' }];
+  if (anchorChoice2.length == 0) anchorChoice2 = [{ position: "auto" }];
 
   //replace any 'auto' with ['left','right','bottom','top']
-  let autosAncs = anchorChoice2.filter((an) => an.position === 'auto');
+  let autosAncs = anchorChoice2.filter((an) => an.position === "auto");
   if (autosAncs.length > 0) {
-    anchorChoice2 = anchorChoice2.filter((an) => an.position !== 'auto');
+    anchorChoice2 = anchorChoice2.filter((an) => an.position !== "auto");
     anchorChoice2.push(
       ...autosAncs.flatMap((anchorObj) => {
-        return (['left', 'right', 'top', 'bottom'] as anchorEdgeType[]).map((anchorName) => {
+        return (["left", "right", "top", "bottom"] as anchorEdgeType[]).map((anchorName) => {
           return { ...anchorObj, position: anchorName };
         });
       })
@@ -136,7 +126,7 @@ export const parseAnchor = (anchor: anchorType) => {
 
   // default values
   let anchorChoice3 = anchorChoice2.map((anchorChoice) => {
-    if (typeof anchorChoice === 'object') {
+    if (typeof anchorChoice === "object") {
       let anchorChoiceCustom = anchorChoice as anchorCustomPositionType;
       anchorChoiceCustom.offset ||= { x: 0, y: 0 };
       anchorChoiceCustom.offset.y ||= 0;
@@ -209,10 +199,8 @@ export const calcAnchors = (anchors: parsedAnchorType[], anchorPos: containsPoin
     let xi = anchorsInwardOffset[posName].x * absInw + anchorsInwardsDimOffset[posName].x * anchorPos.width * relInw;
     let yi = anchorsInwardOffset[posName].y * absInw + anchorsInwardsDimOffset[posName].y * anchorPos.height * relInw;
     let { abs: absSidw, relative: relSidw } = xStr2absRelative(anchor.offset.sidewards);
-    let xsi =
-      anchorsSidewardsOffset[posName].x * absSidw + anchorsSidewardsDimOffset[posName].x * anchorPos.width * relSidw;
-    let ysi =
-      anchorsSidewardsOffset[posName].y * absSidw + anchorsSidewardsDimOffset[posName].y * anchorPos.height * relSidw;
+    let xsi = anchorsSidewardsOffset[posName].x * absSidw + anchorsSidewardsDimOffset[posName].x * anchorPos.width * relSidw;
+    let ysi = anchorsSidewardsOffset[posName].y * absSidw + anchorsSidewardsDimOffset[posName].y * anchorPos.height * relSidw;
     // console.log(anchor.position, xDef, yDef, anchorPos.x, anchorPos.y);
     return {
       x: anchorPos.x + anchor.offset.x + xi + xsi + xDef,

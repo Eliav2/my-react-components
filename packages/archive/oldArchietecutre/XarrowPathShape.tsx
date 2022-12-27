@@ -1,10 +1,10 @@
-import React from 'react';
-import { pathType, relativeOrAbsStr } from '../types';
-import { getPathStateType, simplePosType } from '../utils/XarrowUtils';
-import { choosenAnchorType, xStr2absRelative } from '../utils';
-import { anchorsInwardOffset } from './XarrowAnchors';
-import { Dir, Line, Vector } from '../classes/classes';
-import { XarrowMainPropsAPI } from './XarrowMain';
+import React from "react";
+import { pathType, relativeOrAbsStr } from "../types";
+import { getPathStateType, simplePosType } from "../utils/XarrowUtils";
+import { choosenAnchorType, xStr2absRelative } from "../utils";
+import { anchorsInwardOffset } from "./XarrowAnchors";
+import { Dir, Line, Vector } from "../classes/classes";
+import { XarrowMainPropsAPI } from "./XarrowMain";
 
 export interface XarrowPathShapePropsAPI {
   path?: pathType;
@@ -24,27 +24,25 @@ const PATH_MARGIN = 10;
 const XarrowPathShape: React.FC<XarrowPathShapeProps> = (props) => {
   let getPathState = props.getPathState;
   let posState = getPathState(undefined, null);
-  let ps = new Vector(posState.start.x, posState.start.y);
-  let pe = new Vector(posState.end.x, posState.end.y);
+  let ps = new Vector(posState.startPoint.x, posState.startPoint.y);
+  let pe = new Vector(posState.endPoint.x, posState.endPoint.y);
   let ll = new Line(ps, pe);
   let startDir = new Dir(anchorsInwardOffset[props.anchors.chosenStart.anchor.position]).mul(-1);
   let endDir = new Dir(anchorsInwardOffset[props.anchors.chosenEnd.anchor.position]);
   // for 'middle' anchors
-  if (startDir.size() === 0)
-    startDir = new Dir(ll.diff.abs().x > ll.diff.abs().y ? new Vector(ll.diff.x, 0) : new Vector(0, ll.diff.y));
-  if (endDir.size() === 0)
-    endDir = new Dir(ll.diff.abs().x > ll.diff.abs().y ? new Vector(ll.diff.x, 0) : new Vector(0, ll.diff.y));
+  if (startDir.size() === 0) startDir = new Dir(ll.diff.abs().x > ll.diff.abs().y ? new Vector(ll.diff.x, 0) : new Vector(0, ll.diff.y));
+  if (endDir.size() === 0) endDir = new Dir(ll.diff.abs().x > ll.diff.abs().y ? new Vector(ll.diff.x, 0) : new Vector(0, ll.diff.y));
   let gridBreak = xStr2absRelative(props.gridBreak) ?? { relative: 0, abs: 0 };
   let cu = xStr2absRelative(props.curveness) ?? { relative: 0, abs: 0 };
   let cp1: Vector = new Vector(ps),
     cp2 = new Vector(pe);
-  let cps1 = '';
-  let cps2 = '';
+  let cps1 = "";
+  let cps2 = "";
 
-  if (props.path === 'straight') {
+  if (props.path === "straight") {
     getPathState = getPathState(
       (pos) => pos,
-      (pos) => `M ${pos.start.x} ${pos.start.y} L ${pos.end.x} ${pos.end.y}`
+      (pos) => `M ${pos.startPoint.x} ${pos.startPoint.y} L ${pos.endPoint.x} ${pos.endPoint.y}`
     );
   } else {
     if (startDir.abs().eq(endDir.abs())) {
@@ -70,17 +68,17 @@ const XarrowPathShape: React.FC<XarrowPathShapeProps> = (props) => {
       cp2 = cp2.add(dd2);
     }
     getPathState = getPathState((pos) => ({ ...pos, cp1, cp2 }));
-    if (props.path === 'grid') {
-      cps1 = cp1 ? `L ${cp1.x} ${cp1.y}` : '';
+    if (props.path === "grid") {
+      cps1 = cp1 ? `L ${cp1.x} ${cp1.y}` : "";
       cps2 = `L ${cp2.x} ${cp2.y}`;
       getPathState = getPathState(
         (pos) => pos,
-        (pos) => `M ${pos.start.x} ${pos.start.y} ${cps1} ${cps2} L ${pos.end.x} ${pos.end.y}`
+        (pos) => `M ${pos.startPoint.x} ${pos.startPoint.y} ${cps1} ${cps2} L ${pos.endPoint.x} ${pos.endPoint.y}`
       );
-    } else if (props.path === 'smooth') {
+    } else if (props.path === "smooth") {
       getPathState = getPathState(
         (pos) => pos,
-        (pos) => `M ${pos.start.x} ${pos.start.y} C ${cp1.x} ${cp1.y}, ${cp2.x} ${cp2.y} ${pos.end.x} ${pos.end.y}`
+        (pos) => `M ${pos.startPoint.x} ${pos.startPoint.y} C ${cp1.x} ${cp1.y}, ${cp2.x} ${cp2.y} ${pos.endPoint.x} ${pos.endPoint.y}`
       );
     }
   }
@@ -109,9 +107,9 @@ const XarrowPathShape: React.FC<XarrowPathShapeProps> = (props) => {
 };
 
 XarrowPathShape.defaultProps = {
-  path: 'smooth',
-  gridBreak: '50%',
-  curveness: '0%',
+  path: "smooth",
+  gridBreak: "50%",
+  curveness: "0%",
   _debug: false,
 };
 
