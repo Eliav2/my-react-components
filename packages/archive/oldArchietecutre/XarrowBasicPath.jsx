@@ -11,8 +11,8 @@ var classes_1 = require("../../src/classes/classes");
  */
 var XarrowBasicPath = function (props) {
   // console.log('XarrowBasicPath');
-  var startElem = props.startElem,
-    endElem = props.endElem,
+  var startElem = props.startRect,
+    endElem = props.endRect,
     rootElem = props.rootElem;
   var elems = Object.values({ startElem: startElem, endElem: endElem, rootElem: rootElem });
   var getPathState = exports.getPosition.apply(void 0, elems);

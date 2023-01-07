@@ -33,23 +33,23 @@ var XarrowAnchors = function (props) {
     },
     [props.startAnchor]
   );
-  var startPoints = (0, exports.calcAnchors)(startAnchors, props.startElem.position);
+  var startPoints = (0, exports.calcAnchors)(startAnchors, props.startRect.position);
   var endAnchors = (0, react_1.useMemo)(
     function () {
       return (0, exports.parseAnchor)(props.endAnchor);
     },
     [props.endAnchor]
   );
-  var endPoints = (0, exports.calcAnchors)(endAnchors, props.endElem.position);
+  var endPoints = (0, exports.calcAnchors)(endAnchors, props.endRect.position);
   var _a = (0, utils_1.getShortestLine)(startPoints, endPoints),
     chosenStart = _a.chosenStart,
     chosenEnd = _a.chosenEnd;
   // alter the state - offset connection points to the selected anchors
   var newGetPath = props.getPathState(function (posSt) {
-    posSt.startPoint.x += chosenStart.x - props.startElem.position.x;
-    posSt.startPoint.y += chosenStart.y - props.startElem.position.y;
-    posSt.endPoint.x += chosenEnd.x - props.endElem.position.x;
-    posSt.endPoint.y += chosenEnd.y - props.endElem.position.y;
+    posSt.startPoint.x += chosenStart.x - props.startRect.position.x;
+    posSt.startPoint.y += chosenStart.y - props.startRect.position.y;
+    posSt.endPoint.x += chosenEnd.x - props.endRect.position.x;
+    posSt.endPoint.y += chosenEnd.y - props.endRect.position.y;
     return posSt;
   });
   if (!props.children) {

@@ -13,7 +13,7 @@ export type positionType = {
 };
 const posAttrs = ["left", "top", "right", "bottom", "width", "height"] as const;
 /**
- * returns position of an element along with a reference to the element
+ * returns position of an element AFTER IT IS MOUNTED IN THE DOM
  * also - return the last remembered position of the element if it's not in the DOM
  */
 const usePosition = (elementRef: HTMLElement | null, dependencies?): positionType | null => {
