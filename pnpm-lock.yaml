@@ -188,6 +188,7 @@ importers:
       vite: ^3.2.3
       vite-plugin-dts: ^1.7.1
       vite-plugin-generate-file: ^0.0.3
+      vite-plugin-static-copy: ^0.13.0
     dependencies:
       '@types/prop-types': 15.7.5
       prop-types: 15.8.1
@@ -203,6 +204,7 @@ importers:
       vite: 3.2.5
       vite-plugin-dts: 1.7.1_rollup@3.7.5+vite@3.2.5
       vite-plugin-generate-file: 0.0.3
+      vite-plugin-static-copy: 0.13.0_vite@3.2.5
 
   packages/react-xarrows-pro:
     specifiers:
@@ -418,7 +420,7 @@ importers:
       react-router-dom: 5.3.4_react@17.0.2
       react-scripts: 4.0.3_react@17.0.2
       react-spring: 9.5.5_sfoxds7t5ydpegc3knd667wn6m
-      react-xarrow-v2: link:../../dist
+      react-xarrow-v2: /react-xarrows/2.0.2_react@17.0.2
       react-xarrows: link:../../dist
       web-vitals: 1.1.2
     devDependencies:
@@ -489,6 +491,7 @@ importers:
       react-rnd: ^10.3.5
       react-true-resizable: workspace:*
       react-xarrows: workspace:../dist
+      react-xarrows-v2: npm:react-xarrows@2.0.2
       typescript: ^4.7.4
     dependencies:
       '@algolia/client-search': 4.14.3
@@ -511,6 +514,7 @@ importers:
       react-rnd: 10.3.7_sfoxds7t5ydpegc3knd667wn6m
       react-true-resizable: link:../../react-true-resizable
       react-xarrows: link:../dist
+      react-xarrows-v2: /react-xarrows/2.0.2_react@17.0.2
     devDependencies:
       '@docusaurus/module-type-aliases': 2.2.0_sfoxds7t5ydpegc3knd667wn6m
       '@tsconfig/docusaurus': 1.0.6
@@ -22763,6 +22767,15 @@ packages:
       jsonfile: 6.1.0
       universalify: 2.0.0
 
+  /fs-extra/11.1.0:
+    resolution: {integrity: sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==}
+    engines: {node: '>=14.14'}
+    dependencies:
+      graceful-fs: 4.2.10
+      jsonfile: 6.1.0
+      universalify: 2.0.0
+    dev: true
+
   /fs-extra/7.0.1:
     resolution: {integrity: sha512-YJDaCJZEnBmcbw13fvdAM9AwNOJwOzrE4pqMqBq5nFiEqXUqHwlK4B+3pUw6JNvfSPtX05xFHtYy/1ni01eGCw==}
     engines: {node: '>=6 <7 || >=8'}
@@ -32980,6 +32993,17 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
+  /react-xarrows/2.0.2_react@17.0.2:
+    resolution: {integrity: sha512-tDlAqaxHNmy0vegW/6NdhoWyXJq1LANX/WUAlHyzoHe9BwFVnJPPDghmDjYeVr7XWFmBrVTUrHsrW7GKYI6HtQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      '@types/prop-types': 15.7.5
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 17.0.2
+    dev: false
+
   /react-zoom-pan-pinch/1.6.1_sfoxds7t5ydpegc3knd667wn6m:
     resolution: {integrity: sha512-J2eM0gZ04XiUWvmKZrOhSAB2zjyoK7kw2POIeN1X0yTTlmp6HPGV0zYfjnlkhgt8nQwpvXAbsF/oAnkuiwk1kA==}
     engines: {node: '>=8', npm: '>=5'}
@@ -37170,6 +37194,19 @@ packages:
       chalk: 4.1.2
       ejs: 3.1.8
       js-yaml: 4.1.0
+    dev: true
+
+  /vite-plugin-static-copy/0.13.0_vite@3.2.5:
+    resolution: {integrity: sha512-cln+fvKMgwNBjxQ59QVblmExZrc9gGEdRmfqcPOOGpxT5KInfpkGMvmK4L+kCAeHHSSGNU1bM7BA9PQgaAJc6g==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0
+    dependencies:
+      chokidar: 3.5.3
+      fast-glob: 3.2.12
+      fs-extra: 11.1.0
+      picocolors: 1.0.0
+      vite: 3.2.5
     dev: true
 
   /vite/2.9.9:
