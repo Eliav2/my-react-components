@@ -19,11 +19,7 @@ export const makeWriteableDeep = <T extends AnyObj>(obj: T): DeepWriteable<T> =>
 export type Expand<T> = T extends infer O ? { [K in keyof O]: O[K] } : never;
 
 // expands object types recursively
-export type ExpandRecursively<T> = T extends object
-  ? T extends infer O
-    ? { [K in keyof O]: ExpandRecursively<O[K]> }
-    : never
-  : T;
+export type ExpandRecursively<T> = T extends object ? (T extends infer O ? { [K in keyof O]: ExpandRecursively<O[K]> } : never) : T;
 
 // make PS keys be subset of keys of P, with no extra props
 export type PickValidKeys<P, PS> = Exclude<keyof P, Exclude<keyof P, keyof PS>>;
@@ -48,6 +44,12 @@ type Spread<T1, T2> = Expand<
 >;
 
 export type MapNonNullable<T extends {}> = { [key in keyof T]: NonNullable<T[key]> };
+
+// generic type to make all props of T non-nullable
+// export type NonNullableProps<T> = { [P in keyof T]-?: NonNullable<T[P]> }; // same as Required<T>
+
+// generic type to remove prop 'children' from T
+export type RemoveChildren<T> = Omit<T, "children">;
 
 // type Props = { name?: string; age?: number };
 // type DefaultProps = { age: number };

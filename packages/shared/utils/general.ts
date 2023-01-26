@@ -4,6 +4,7 @@
 
 /** clones deep object that DOES NOT CONTAIN FUNCTION VALUES IN IT */
 import type { AnyObj, Expand, PossiblyReadOnly, Writeable } from "../types";
+import React from "react";
 
 /** fast deep clone on json-serializable object (functions inside this object not suppoerted) */
 export const cloneDeepNoFunction = <T extends AnyObj>(obj: T): T => {
@@ -74,3 +75,7 @@ export function range(start: number, stop: number, step) {
 
   return result;
 }
+
+export const isReactForwardRef = (obj: any): obj is React.ForwardRefExoticComponent<any> => {
+  return obj.$$typeof === Symbol.for("react.forward_ref");
+};
