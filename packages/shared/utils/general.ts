@@ -76,6 +76,6 @@ export function range(start: number, stop: number, step) {
   return result;
 }
 
-export const isReactForwardRef = (obj: any): obj is React.ForwardRefExoticComponent<any> => {
-  return obj.$$typeof === Symbol.for("react.forward_ref");
+export const isReactForwardRef = (obj: unknown): obj is React.ForwardRefExoticComponent<any> => {
+  return (typeof obj === "object" && obj && "$$typeof" in obj && obj?.$$typeof === Symbol.for("react.forward_ref")) ?? false;
 };
