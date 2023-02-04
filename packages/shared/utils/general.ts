@@ -6,7 +6,7 @@
 import type { AnyObj, Expand, PossiblyReadOnly, Writeable } from "../types";
 import React from "react";
 
-/** fast deep clone on json-serializable object (functions inside this object not suppoerted) */
+/** fast deep clone on json-serializable object (functions inside this object not suppoerted,classes would become objects with no methods) */
 export const cloneDeepNoFunction = <T extends AnyObj>(obj: T): T => {
   if (obj === undefined) return obj;
   return JSON.parse(JSON.stringify(obj));

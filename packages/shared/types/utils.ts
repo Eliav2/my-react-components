@@ -59,3 +59,7 @@ export type RemoveChildren<T> = Omit<T, "children">;
 
 // type G<T1, T2 extends { [key in keyof T1]: any }> = {};
 // type t10 = G<{ name?: string; age?: number }, { age:number,test:string }>;
+
+export function weakenClassTypes(klass: { new (...args: any[]): any }) {
+  return class extends klass {};
+}

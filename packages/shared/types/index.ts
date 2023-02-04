@@ -1,3 +1,5 @@
+import { Writeable } from "./utils";
+
 export type PercentStr = `${number}%`;
 
 /**
