@@ -63,3 +63,6 @@ export type RemoveChildren<T> = Omit<T, "children">;
 export function weakenClassTypes(klass: { new (...args: any[]): any }) {
   return class extends klass {};
 }
+
+// check if two types are equal
+export type Equals<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2 ? true : false;
