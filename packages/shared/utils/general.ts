@@ -79,3 +79,8 @@ export function range(start: number, stop: number, step) {
 export const isReactForwardRef = (obj: unknown): obj is React.ForwardRefExoticComponent<any> => {
   return (typeof obj === "object" && obj && "$$typeof" in obj && obj?.$$typeof === Symbol.for("react.forward_ref")) ?? false;
 };
+
+export function deepFreeze<T extends AnyObj>(o: T) {
+  Object.values(o).forEach((v) => Object.isFrozen(v) || deepFreeze(v));
+  return Object.freeze(o);
+}
