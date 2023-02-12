@@ -80,7 +80,22 @@ export const isReactForwardRef = (obj: unknown): obj is React.ForwardRefExoticCo
   return (typeof obj === "object" && obj && "$$typeof" in obj && obj?.$$typeof === Symbol.for("react.forward_ref")) ?? false;
 };
 
+// creates a deep frozen object
 export function deepFreeze<T extends AnyObj>(o: T) {
   Object.values(o).forEach((v) => Object.isFrozen(v) || deepFreeze(v));
   return Object.freeze(o);
 }
+
+export function omit<T extends AnyObj, P extends keyof T>(o: T, property: P): Omit<T, P> {
+  const { [property]: _, ...rest } = o;
+  return rest;
+}
+
+export const assignDefaults = <T extends AnyObj, T2 extends AnyObj>(obj: T, defaults: T2): T & T2 => {
+  const newObj = { ...obj };
+  for (const key in defaults) {
+    newObj[key] ??= defaults[key] as any;
+  }
+  return newObj as any;
+  // return Object.assign({}, obj, defaults);
+};
