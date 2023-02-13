@@ -26,7 +26,7 @@ export const parseRelativeSize = (str: RelativeSize): RelativePos => {
   return { abs: 0, percent: 0 };
 };
 
-export const getRelativeSizeValue = (val: RelativeSize, size: number): number => {
+export const getRelativeSizeValue = (val: RelativeSize, totalSize: number): number => {
   const { abs, percent } = parseRelativeSize(val);
-  return percent * size + abs;
+  return percent * totalSize + abs;
 };
