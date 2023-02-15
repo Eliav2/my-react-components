@@ -26,6 +26,8 @@ const usePassChildrenRef = <T extends any = any>(children): React.RefObject<T> =
 
 /**
  * this is used to preserve the ref of an element if given, and if not given, it creates a new ref.
+ * this is useful on component that should pass refs, and also uses the ref internally
+ * (if the internal component would count on the parent component to pass ref it might be ended with null)
  */
 export const usePassRef = <T extends any = any>(ref): React.RefObject<T> => {
   const nodeRef = useRef<T>(null);
