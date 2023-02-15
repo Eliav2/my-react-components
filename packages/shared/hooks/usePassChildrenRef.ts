@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
+import useRerender from "./useRerender";
 
 /**
  * this is used to preserve the ref of the child element if given, and promise that the wrapper
