@@ -77,6 +77,9 @@ importers:
       vite-plugin-babel: 1.1.3_tdtxl2cb2vz56ltn6yvd3ufnv4
       webpack: 5.75.0
 
+  packages/react-delay-renders-component:
+    specifiers: {}
+
   packages/react-true-resizable:
     specifiers:
       '@rollup/plugin-typescript': ^8.3.3
@@ -358,6 +361,7 @@ importers:
 
   packages/react-xarrows/dist:
     specifiers:
+      '@babel/core': ^7.0.0
       '@rollup/plugin-typescript': ^8.3.3
       '@testing-library/react': ^13.4.0
       '@types/prop-types': ^15.7.3
@@ -379,6 +383,7 @@ importers:
       prop-types: 15.8.1
       react-fast-compare: 3.2.0
     devDependencies:
+      '@babel/core': 7.21.0
       '@rollup/plugin-typescript': 8.5.0_rollup@3.17.2
       '@testing-library/react': 13.4.0
       '@types/react': 18.0.28
@@ -6559,8 +6564,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.0
       '@emotion/cache': 11.10.5
-      '@emotion/react': 11.10.6_jguntkfjozdfrzd4l22x7bdnx4
-      '@emotion/styled': 11.10.6_lh7ovkr2sdwislaigdqdvxpn5i
+      '@emotion/react': 11.10.6_react@17.0.2
+      '@emotion/styled': 11.10.6_lppulqnmkkrmfes7eqrbphxjnm
       csstype: 3.1.1
       prop-types: 15.8.1
       react: 17.0.2
@@ -12891,7 +12896,7 @@ packages:
       loader-utils: 2.0.4
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.75.0
+      webpack: 5.75.0_webpack-cli@4.10.0
 
   /babel-loader/8.3.0_wd33ak6txextphwae5ymvkxpdq:
     resolution: {integrity: sha512-H8SvsMF+m9t15HNLMipppzkC+Y2Yq+v3SonZyU70RBL/h1gxPkH08Ot8pEE9Z4Kd+czyWJClmFS8qzIP9OZ04Q==}
