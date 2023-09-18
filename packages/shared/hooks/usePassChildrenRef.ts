@@ -1,6 +1,8 @@
 import React, { useLayoutEffect, useRef } from "react";
 import useRerender from "./useRerender";
 
+
+
 /**
  * this is used to preserve the ref of the child element if given, and promise that the wrapper
  * component has a valid ref to the child element
@@ -11,8 +13,8 @@ import useRerender from "./useRerender";
  *
  * @param children - child of the component
  */
-const usePassChildrenRef = <T extends any = any>(children): React.RefObject<T> => {
-  return usePassRef<T>(children.ref);
+const usePassChildrenRef = <T extends any = any>(children:React.ReactElement): React.RefObject<T> => {
+  return usePassRef<T>((children as any).ref);
   // const nodeRef = useRef<T>(null);
   // let passRef = nodeRef;
   // // React.Children.only(children); // optionally, this will throw error if there are more than one child
@@ -30,7 +32,7 @@ const usePassChildrenRef = <T extends any = any>(children): React.RefObject<T> =
  * this is useful on component that should pass refs, and also uses the ref internally
  * (if the internal component would count on the parent component to pass ref it might be ended with null)
  */
-export const usePassRef = <T extends any = any>(ref): React.RefObject<T> => {
+export const usePassRef = <T extends any = any>(ref:React.RefObject<T>): React.RefObject<T> => {
   const nodeRef = useRef<T>(null);
   let passRef = nodeRef;
   // React.Children.only(children); // optionally, this will throw error if there are more than one child
@@ -43,15 +45,16 @@ export const usePassRef = <T extends any = any>(ref): React.RefObject<T> => {
   return passRef;
 };
 
-const usePassElem = <T extends any = any>(children): React.RefObject<T> => {
+const usePassElem = <T extends any = any>(children:React.ReactElement): React.RefObject<T> => {
   const nodeRef = useRef<T>(null);
   let passRef = nodeRef;
   // React.Children.only(children);
-  if (children?.ref && "current" in children.ref) {
+  const _children = children as any;
+  if (_children?.ref && "current" in _children.ref) {
     // @ts-ignore
     // if it has ref, set the ref to the given ref
-    nodeRef.current = children.ref.current;
-    passRef = children.ref;
+    nodeRef.current = _children.ref.current;
+    passRef = _children.ref;
   }
   return passRef;
 };
