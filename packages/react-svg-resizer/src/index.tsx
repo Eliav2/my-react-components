@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState } from "react";
 import isEqual from "react-fast-compare";
 import { usePassRef } from "shared/hooks/usePassChildrenRef";
+import type { Property } from "csstype";
 
 const bboxDefault = { x: 0, y: 0, width: 0, height: 0 };
 export const getBBox = (ref: SVGGraphicsElement | null) => {
@@ -65,29 +66,57 @@ export interface SvgResizerProps {
   children: React.ReactElement;
 
   size: number;
+
+  scaleByMax?: boolean;
+
+  transformOrigin?: Property.TransformOrigin;
 }
 
-const SvgResizer = React.forwardRef<SVGSVGElement, SvgResizerProps>(function NormalizedGSvg({ children, size }, forwardedRef) {
+const SvgResizer = React.forwardRef<SVGSVGElement, SvgResizerProps>(function NormalizedGSvg(
+  { children, size, scaleByMax = false, transformOrigin = "center" },
+  forwardedRef
+) {
   const ref = usePassRef(forwardedRef);
   const bbox = useGetBBox(ref, [ref.current]);
 
   let min = Math.min(bbox.height, bbox.width);
-  let transform = ``;
-  transform += ` scale(${1 / min})`;
-  if (size !== 1) {
-    transform += ` scale(${size})`;
-  }
+  let max = Math.max(bbox.height, bbox.width);
+  let scaleFactor = size / (scaleByMax ? max : min);
+  if (!isFinite(scaleFactor)) scaleFactor = 0;
 
+  let transform = ``;
+  // transform += ` scale(${scaleFactor * 3})`;
+  // transform += ` scale(${1 / scaleFactor})`;
+  // if (size !== 1) {
+  //   transform += ` scale(${size})`;
+  // }
+
+  // const finalScaleFactor = scaleFactor !== 0 ? size / scaleFactor : 0;
+  // const finalHeight = Math.max(bbox.height * finalScaleFactor, bbox.height);
+  // const finalWidth = Math.max(bbox.width * finalScaleFactor, bbox.width);
+
+  // console.log(bbox);
+  // // console.log(finalHeight, finalWidth);
+  // // console.log(bbox.height, bbox.width);
+  // console.log(finalHeight);
+  // console.log(bbox.height * finalScaleFactor);
+  console.log(scaleFactor);
   return (
     <svg
       ref={ref}
+      // This is actually the equivalent of saying, make this svg parent show exactly the content of the children svg element
       viewBox={`${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`}
-      height={bbox.height}
-      width={bbox.width}
+      height={bbox.height * scaleFactor}
+      width={bbox.width * scaleFactor}
+      // height={finalHeight}
+      // height={finalHeight}
+      // width={bbox.width}
+      // height={bbox.height}
+      // width={finalWidth}
       style={{
         transform,
         transformBox: "fill-box",
-        transformOrigin: "center",
+        transformOrigin,
       }}
     >
       {children}

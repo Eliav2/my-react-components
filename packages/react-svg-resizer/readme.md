@@ -1,5 +1,7 @@
 # react-svg-resizer
 
+![npm Version](https://img.shields.io/npm/v/react-svg-resizer)
+
 A simple React component for resizing SVG elements with ease.
 
 ## Installation
