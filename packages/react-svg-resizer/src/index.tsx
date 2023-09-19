@@ -69,6 +69,7 @@ export interface SvgResizerProps {
 
   scaleByMax?: boolean;
 
+  // sometimes you want to scale the svg from a specific direction, such the top left corner, default is center
   transformOrigin?: Property.TransformOrigin;
 }
 
@@ -85,22 +86,7 @@ const SvgResizer = React.forwardRef<SVGSVGElement, SvgResizerProps>(function Nor
   if (!isFinite(scaleFactor)) scaleFactor = 0;
 
   let transform = ``;
-  // transform += ` scale(${scaleFactor * 3})`;
-  // transform += ` scale(${1 / scaleFactor})`;
-  // if (size !== 1) {
-  //   transform += ` scale(${size})`;
-  // }
 
-  // const finalScaleFactor = scaleFactor !== 0 ? size / scaleFactor : 0;
-  // const finalHeight = Math.max(bbox.height * finalScaleFactor, bbox.height);
-  // const finalWidth = Math.max(bbox.width * finalScaleFactor, bbox.width);
-
-  // console.log(bbox);
-  // // console.log(finalHeight, finalWidth);
-  // // console.log(bbox.height, bbox.width);
-  // console.log(finalHeight);
-  // console.log(bbox.height * finalScaleFactor);
-  console.log(scaleFactor);
   return (
     <svg
       ref={ref}
@@ -108,11 +94,6 @@ const SvgResizer = React.forwardRef<SVGSVGElement, SvgResizerProps>(function Nor
       viewBox={`${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`}
       height={bbox.height * scaleFactor}
       width={bbox.width * scaleFactor}
-      // height={finalHeight}
-      // height={finalHeight}
-      // width={bbox.width}
-      // height={bbox.height}
-      // width={finalWidth}
       style={{
         transform,
         transformBox: "fill-box",
