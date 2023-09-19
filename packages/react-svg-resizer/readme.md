@@ -39,6 +39,10 @@ case 30x30 circle).
 
 Means that if a svg shape size 50x100 was given and a size of 1 would be given, the shape would be scaled to 1x2.
 
+## Code sandbox demo 
+
+**[here's codesandbox with demo](https://codesandbox.io/s/react-svg-resizer-demo-c2s7n3?file=/src/App.tsx)**
+
 ## Props
 
 ### `SvgResizer`
