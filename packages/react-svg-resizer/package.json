@@ -1,6 +1,6 @@
 {
   "name": "react-svg-resizer",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "",
   "main": "dist/react-svg-resizer.cjs",
   "module": "dist/react-svg-resizer.js",
@@ -12,9 +12,13 @@
     "build-watch": "vite build --watch",
     "prepack": "vite build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Eliav2/my-react-components/tree/master/packages/react-svg-resizer"
+  },
+  "keywords": ["React","SVG"],
+  "author": "Eliav Louski",
+  "license": "MIT",
   "dependencies": {
     "react-fast-compare": "^3.2.0"
   },
