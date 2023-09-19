@@ -43,11 +43,13 @@ Means that if a svg shape size 50x100 was given and a size of 1 would be given, 
 
 ### `SvgResizer`
 
-| Prop   | Type     | Default | Description                                                                       |
-|--------|----------|---------|-----------------------------------------------------------------------------------|
-| `size` | `number` | `1`     | The desired size of the normalized SVG. It scales the SVG by the provided factor. |
+| Prop         | Type                            | Default | Description                                                                                                                   |
+|--------------|---------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------|
+| `size`       | `number`                        | `1`     | The desired size of the normalized SVG. It scales the SVG by the provided factor.                                             |
+| `scaleByMax` | `boolean`                       | 'false' | Should the bigger axis should determine the size? by default, the final svg shape the determined relative to the smaller axis |
+| `svgProps`   | `React.SVGProps<SVGSVGElement>` | `{}`    | Properties that would be passed down to the underlying `svg` react wrapper                                                    |
 
-This component can be used to wrap svgs element. For example `<SvgResizer><svg>...</svg></SvgResizer>`
+This component can be used to wrap svgs element. You most probably want to use this component.
 
 ### `SvgGResizer`
 
@@ -100,6 +102,7 @@ const SvgResizerDemo = () => {
 
 export default App;
 ```
+
 The result:
 
 ![image](https://github.com/Eliav2/my-react-components/assets/47307889/e6ba2b80-37cc-46d8-89f0-f94d3ac6d1b9)
@@ -108,8 +111,9 @@ the original svg shape is 80x80, and the scaled svg shape is 30x30.
 
 ### How it works
 
-under the hood, `SvgResizer` keeps track of the dimensions of the children svg by using the [getBBox](https://developer.mozilla.org/en-US/docs/Web/API/SVGGraphicsElement/getBBox) method, 
-and scales the provided svg to the desired size. 
+under the hood, `SvgResizer` keeps track of the dimensions of the children svg by using
+the [getBBox](https://developer.mozilla.org/en-US/docs/Web/API/SVGGraphicsElement/getBBox) method,
+and scales the provided svg to the desired size.
 
 ## License
 

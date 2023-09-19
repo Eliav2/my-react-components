@@ -69,11 +69,11 @@ export interface SvgResizerProps {
 
   scaleByMax?: boolean;
 
-  SvgProps?: React.SVGProps<SVGSVGElement>;
+  svgProps?: React.SVGProps<SVGSVGElement>;
 }
 
 const SvgResizer = React.forwardRef<SVGSVGElement, SvgResizerProps>(function NormalizedGSvg(
-  { children, size, scaleByMax = false, SvgProps = {} },
+  { children, size, scaleByMax = false, svgProps = {} },
   forwardedRef
 ) {
   const ref = usePassRef(forwardedRef);
@@ -91,7 +91,7 @@ const SvgResizer = React.forwardRef<SVGSVGElement, SvgResizerProps>(function Nor
       viewBox={`${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`}
       height={bbox.height * scaleFactor}
       width={bbox.width * scaleFactor}
-      {...SvgProps}
+      {...svgProps}
     >
       {children}
     </svg>
