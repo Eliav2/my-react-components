@@ -2,6 +2,9 @@
   // These tasks will run in order when initializing your CodeSandbox project.
   "setupTasks": [
     {
+      "name": "pnpm setup",
+      "command": "pnpm config set auto-install-peers true"
+    } ,{
       "name": "First Setup script",
       "command": "pnpm run first-setup"
     }
