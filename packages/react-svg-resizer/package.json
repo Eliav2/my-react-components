@@ -1,6 +1,6 @@
 {
   "name": "react-svg-resizer",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "",
   "main": "dist/react-svg-resizer.cjs",
   "module": "dist/react-svg-resizer.js",
