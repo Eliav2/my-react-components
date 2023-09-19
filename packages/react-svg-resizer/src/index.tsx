@@ -69,12 +69,11 @@ export interface SvgResizerProps {
 
   scaleByMax?: boolean;
 
-  // sometimes you want to scale the svg from a specific direction, such the top left corner, default is center
-  transformOrigin?: Property.TransformOrigin;
+  SvgProps?: React.SVGProps<SVGSVGElement>;
 }
 
 const SvgResizer = React.forwardRef<SVGSVGElement, SvgResizerProps>(function NormalizedGSvg(
-  { children, size, scaleByMax = false, transformOrigin = "center" },
+  { children, size, scaleByMax = false, SvgProps = {} },
   forwardedRef
 ) {
   const ref = usePassRef(forwardedRef);
@@ -85,8 +84,6 @@ const SvgResizer = React.forwardRef<SVGSVGElement, SvgResizerProps>(function Nor
   let scaleFactor = size / (scaleByMax ? max : min);
   if (!isFinite(scaleFactor)) scaleFactor = 0;
 
-  let transform = ``;
-
   return (
     <svg
       ref={ref}
@@ -94,11 +91,7 @@ const SvgResizer = React.forwardRef<SVGSVGElement, SvgResizerProps>(function Nor
       viewBox={`${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`}
       height={bbox.height * scaleFactor}
       width={bbox.width * scaleFactor}
-      style={{
-        transform,
-        transformBox: "fill-box",
-        transformOrigin,
-      }}
+      {...SvgProps}
     >
       {children}
     </svg>

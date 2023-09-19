@@ -1,6 +1,6 @@
 import React from "react";
 
-function JIcon({ theme = "light", size = 8 }: { theme: "light" | "dark"; size: number }) {
+function JIcon() {
   return (
     <svg
       version="1.0"

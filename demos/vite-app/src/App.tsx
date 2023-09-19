@@ -1,5 +1,5 @@
 import "./App.css";
-import SvgResizer, { SvgGResizer } from "react-svg-resizer";
+import SvgResizer from "react-svg-resizer";
 import JIcon from "./JIcon.tsx";
 import WideIcon from "./WideIcon.tsx";
 import { useState } from "react";
@@ -13,8 +13,10 @@ function App() {
   );
 }
 
-const ResizeableSvg = ({ children, title }: { children: React.ReactNode; title: string }) => {
+const ResizeableSvg = ({ children, title }: { children: React.ReactElement; title: string }) => {
+  const [scaleByMax, setScaleByMax] = useState(false);
   const [size, setSize] = useState(50);
+
   return (
     <div style={{ border: "1px solid black" }}>
       <h2>{title}</h2>
@@ -23,9 +25,13 @@ const ResizeableSvg = ({ children, title }: { children: React.ReactNode; title: 
       <h3>modified:</h3>
       <div>
         size:
-        <input title={"123"} type={"number"} value={size} onChange={(e) => setSize(e.target.value)} />
+        <input type={"number"} value={size} onChange={(e) => setSize(Number(e.target.value))} />
+        scaleByMax:
+        <input type={"checkbox"} checked={scaleByMax} onChange={(e) => setScaleByMax(e.target.checked)} />
         <div style={{ padding: 8 }}>
-          <SvgResizer size={size}>{children}</SvgResizer>
+          <SvgResizer size={size} scaleByMax={scaleByMax}>
+            {children}
+          </SvgResizer>
         </div>
       </div>
     </div>
@@ -35,15 +41,6 @@ const ResizeableSvg = ({ children, title }: { children: React.ReactNode; title: 
 const SvgResizerDemo = () => {
   return (
     <>
-      {/*<h2>scale inner svg to 30</h2>*/}
-      {/*<svg width="100" height="100">*/}
-      {/*  <SvgGResizer size={30} center={false}>*/}
-      {/*    <circle cx="50" cy="50" r="40" fill="blue" />*/}
-      {/*  </SvgGResizer>*/}
-      {/*</svg>*/}
-      {/*80->160  160=>300 (240)*/}
-      {/*80->200  200=>500*/}
-
       <ResizeableSvg title={"Tall icon"}>
         <JIcon />
       </ResizeableSvg>
@@ -57,28 +54,6 @@ const SvgResizerDemo = () => {
           <rect width="60" height="30" fill="blue" />
         </svg>
       </ResizeableSvg>
-
-      {/*<h2>scale entire svg to 30</h2>*/}
-      {/*<SvgResizer size={80}>*/}
-      {/*  <JIcon />*/}
-      {/*</SvgResizer>*/}
-
-      {/*<h1>wide icon</h1>*/}
-      {/*<SvgResizer size={100}>*/}
-      {/*  <WideIcon />*/}
-      {/*</SvgResizer>*/}
-      {/*<WideIcon />*/}
-
-      {/*<h2>scale horizontal entire svg to 30</h2>*/}
-      {/*<div style={{ display: "flex" }}>*/}
-      {/*  <div>hey</div>*/}
-
-      {/*  <SvgResizer size={100} transformOrigin={"left top"}>*/}
-      {/*    <svg width="60" height="30">*/}
-      {/*      <rect width="60" height="30" fill="blue" />*/}
-      {/*    </svg>*/}
-      {/*  </SvgResizer>*/}
-      {/*</div>*/}
     </>
   );
 };
