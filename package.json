@@ -25,5 +25,12 @@
   ],
   "prettier": {
     "printWidth": 140
+  },
+
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": ["*"]
+    }
   }
+
 }
