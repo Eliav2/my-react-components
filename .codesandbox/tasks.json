@@ -3,7 +3,7 @@
   "setupTasks": [
     {
       "name": "git submodules init",
-      "command": "git submodule update --init"
+      "command": "git submodule update --init packages/react-true-resizable"
     },  {
       "name": "pnpm setup",
       "command": "npm i -g pnpm:8 && pnpm config set auto-install-peers true"
