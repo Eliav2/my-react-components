@@ -9,6 +9,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "react-svg-resizer": "workspace:*"
+  },
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",

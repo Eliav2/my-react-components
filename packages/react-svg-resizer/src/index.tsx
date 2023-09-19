@@ -21,20 +21,29 @@ export const useGetBBox = (ref: React.RefObject<SVGGraphicsElement>, deps: any[]
   return bbox;
 };
 
-export interface SvgResizerProps {
+export interface SvgGResizerProps {
   children: React.ReactElement;
-  // the size of the normalized svg, default is 1
-  size?: number;
+
+  size: number;
+
+  // center the svg around the origin (0,0)
+  center?: boolean;
 }
 
 /**
  * takes svg react element as children and normalizes it to be centered and have a size of 1
  */
-const SvgResizer = React.forwardRef<SVGGElement, SvgResizerProps>(function NormalizedGSvg({ children, size = 1 }, forwardedRef) {
+export const SvgGResizer = React.forwardRef<SVGGElement, SvgGResizerProps>(function NormalizedGSvg(
+  { children, size, center = false },
+  forwardedRef
+) {
   const ref = usePassRef<SVGGElement>(forwardedRef);
   const bbox = useGetBBox(ref, [ref.current]);
+  // console.log(bbox);
   let min = Math.min(bbox.height, bbox.width);
-  let transform = `translate(${-bbox.x - bbox.width / 2}px,${-bbox.y - bbox.height / 2}px) scale(${1 / min})`;
+  let transform = ``;
+  if (center) transform += `translate(${-bbox.x - bbox.width / 2}px,${-bbox.y - bbox.height / 2}px)`;
+  transform += ` scale(${1 / min})`;
   if (size !== 1) {
     transform += ` scale(${size})`;
   }
@@ -44,11 +53,46 @@ const SvgResizer = React.forwardRef<SVGGElement, SvgResizerProps>(function Norma
       style={{
         transform,
         transformBox: "fill-box",
-        transformOrigin: "center"
+        transformOrigin: "center",
       }}
     >
       {children}
     </g>
   );
 });
+
+export interface SvgResizerProps {
+  children: React.ReactElement;
+
+  size: number;
+}
+
+const SvgResizer = React.forwardRef<SVGSVGElement, SvgResizerProps>(function NormalizedGSvg({ children, size }, forwardedRef) {
+  const ref = usePassRef(forwardedRef);
+  const bbox = useGetBBox(ref, [ref.current]);
+
+  let min = Math.min(bbox.height, bbox.width);
+  let transform = ``;
+  transform += ` scale(${1 / min})`;
+  if (size !== 1) {
+    transform += ` scale(${size})`;
+  }
+
+  return (
+    <svg
+      ref={ref}
+      viewBox={`${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`}
+      height={bbox.height}
+      width={bbox.width}
+      style={{
+        transform,
+        transformBox: "fill-box",
+        transformOrigin: "center",
+      }}
+    >
+      {children}
+    </svg>
+  );
+});
+
 export default SvgResizer;

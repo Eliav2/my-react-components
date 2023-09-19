@@ -2,7 +2,9 @@
   "name": "react-svg-resizer",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/react-svg-resizer.cjs",
+  "module": "dist/react-svg-resizer.js",
+  "types": "dist/types/index.d.ts",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
