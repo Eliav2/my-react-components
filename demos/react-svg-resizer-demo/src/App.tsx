@@ -3,6 +3,7 @@ import SvgResizer from "react-svg-resizer";
 import JIcon from "./JIcon.tsx";
 import WideIcon from "./WideIcon.tsx";
 import { useState } from "react";
+import AddHomeWorkIcon from "@mui/icons-material/AddHomeWork";
 
 function App() {
   return (
@@ -41,15 +42,19 @@ const ResizeableSvg = ({ children, title }: { children: React.ReactElement; titl
 const SvgResizerDemo = () => {
   return (
     <>
-      <ResizeableSvg title={"Tall icon"}>
+      <ResizeableSvg title={"MUI Icons"}>
+        <AddHomeWorkIcon />
+      </ResizeableSvg>
+
+      <ResizeableSvg title={"Custom Tall icon"}>
         <JIcon />
       </ResizeableSvg>
 
-      <ResizeableSvg title={"Wide icon"}>
+      <ResizeableSvg title={"Custom Wide icon"}>
         <WideIcon />
       </ResizeableSvg>
 
-      <ResizeableSvg title={"Simple Rect"}>
+      <ResizeableSvg title={"Simple Rect React Element"}>
         <svg width="60" height="30">
           <rect width="60" height="30" fill="blue" />
         </svg>
