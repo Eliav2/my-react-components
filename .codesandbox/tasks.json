@@ -2,6 +2,9 @@
   // These tasks will run in order when initializing your CodeSandbox project.
   "setupTasks": [
     {
+      "name": "git submodules init",
+      "command": "git submodule update --init"
+    },  {
       "name": "pnpm setup",
       "command": "pnpm config set auto-install-peers true"
     } ,{
