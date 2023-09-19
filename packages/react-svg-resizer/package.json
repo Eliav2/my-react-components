@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vite build",
-    "build-watch": "vite build --watch"
+    "build-watch": "vite build --watch",
+    "prepack": "vite build"
   },
   "keywords": [],
   "author": "",
