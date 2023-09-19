@@ -20,12 +20,12 @@ const ResizeableSvg = ({ children, title }: { children: React.ReactElement; titl
   return (
     <div style={{ border: "1px solid black" }}>
       <h2>{title}</h2>
-      <h3>unmodofied:</h3>
+      <h3>unmodified:</h3>
       {children}
       <h3>modified:</h3>
       <div>
-        size:
-        <input type={"number"} value={size} onChange={(e) => setSize(Number(e.target.value))} />
+        size: {size}
+        <input type={"range"} max={500} value={size} onChange={(e) => setSize(Number(e.target.value))} />
         scaleByMax:
         <input type={"checkbox"} checked={scaleByMax} onChange={(e) => setScaleByMax(e.target.checked)} />
         <div style={{ padding: 8 }}>

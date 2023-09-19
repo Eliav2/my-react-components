@@ -5,7 +5,7 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
   plugins: [dts({ entryRoot: "src", outputDir: "dist/types", tsConfigFilePath: "../../tsconfig.json" })],
   build: {
-    // emptyOutDir: true,
+    emptyOutDir: true,
     // outDir: path.join(__dirname, "dist"),
     outDir: "dist",
     minify: false,
@@ -14,7 +14,7 @@ export default defineConfig({
       entry: "src/index.tsx",
       formats: ["cjs", "es"],
     },
-    sourcemap: true,
+    // sourcemap: true,
     rollupOptions: {
       // plugins: [typescript({ tsconfig: "tsconfig.build.json" })], // relatively slow, so running tsc concurrently using package.json script
       external: ["react", "react-dom", "react-fast-compare"],
