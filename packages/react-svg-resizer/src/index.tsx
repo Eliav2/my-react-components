@@ -62,7 +62,7 @@ export const SvgGResizer = React.forwardRef<SVGGElement, SvgGResizerProps>(funct
 });
 
 export interface SvgResizerProps {
-  children: React.ReactElement;
+  children: React.ReactNode;
 
   size: number;
 
