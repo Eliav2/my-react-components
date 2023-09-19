@@ -6,7 +6,7 @@
       "command": "git submodule update --init"
     },  {
       "name": "pnpm setup",
-      "command": "pnpm config set auto-install-peers true"
+      "command": "npm i -g pnpm:8 && pnpm config set auto-install-peers true"
     } ,{
       "name": "First Setup script",
       "command": "pnpm run first-setup"
