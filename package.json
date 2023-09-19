@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "first-setup": "pnpm install && pnpm run build",
+    "first-setup": "pnpm install --force && pnpm run build",
     "build": "pnpm --parallel --filter \"./packages/*\" run build"
   },
   "devDependencies": {

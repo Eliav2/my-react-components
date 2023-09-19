@@ -11,7 +11,7 @@
 //    },
     {
       "name": "First Setup script",
-      "command": "pnpm run first-setup 2> /dev/null"
+      "command": "pnpm run first-setup"
     }
   ],
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
