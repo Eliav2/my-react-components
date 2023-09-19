@@ -43,6 +43,9 @@ Means that if a svg shape size 50x100 was given and a size of 1 would be given, 
 
 **[here's codesandbox with demo](https://codesandbox.io/s/react-svg-resizer-demo-c2s7n3?file=/src/App.tsx)**
 
+![react-svg-resizer](https://github.com/Eliav2/my-react-components/assets/47307889/256761da-b992-401f-acba-d12b135a4555)
+
+
 ## Props
 
 ### `SvgResizer`
