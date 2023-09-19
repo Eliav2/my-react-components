@@ -16,7 +16,9 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitAny": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "declarationMap": true,
+    "sourceMap": true
   },
   "include": ["."],
   "exclude": ["node_modules"],

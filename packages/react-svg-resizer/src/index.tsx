@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import isEqual from "react-fast-compare";
 import { usePassRef } from "shared/hooks/usePassChildrenRef";
 
@@ -7,6 +7,7 @@ export const getBBox = (ref: SVGGraphicsElement | null) => {
   if (!ref) return bboxDefault;
   return ref.getBBox();
 };
+
 export const useGetBBox = (ref: React.RefObject<SVGGraphicsElement>, deps: any[] = []) => {
   // console.log("useGetBBox");
   const [bbox, setBbox] = useState(bboxDefault);
@@ -20,7 +21,7 @@ export const useGetBBox = (ref: React.RefObject<SVGGraphicsElement>, deps: any[]
   return bbox;
 };
 
-export interface NormalizedGSvgProps {
+export interface SvgResizerProps {
   children: React.ReactElement;
   // the size of the normalized svg, default is 1
   size?: number;
@@ -29,7 +30,7 @@ export interface NormalizedGSvgProps {
 /**
  * takes svg react element as children and normalizes it to be centered and have a size of 1
  */
-const SvgResizer = React.forwardRef(function NormalizedGSvg({ children, size = 1 }: NormalizedGSvgProps, forwardedRef) {
+const SvgResizer = React.forwardRef<SVGGElement, SvgResizerProps>(function NormalizedGSvg({ children, size = 1 }, forwardedRef) {
   const ref = usePassRef<SVGGElement>(forwardedRef);
   const bbox = useGetBBox(ref, [ref.current]);
   let min = Math.min(bbox.height, bbox.width);
