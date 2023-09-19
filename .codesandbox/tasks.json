@@ -4,12 +4,14 @@
     {
       "name": "git submodules init",
       "command": "git submodule update --init packages/react-true-resizable"
-    },  {
-      "name": "pnpm setup",
-      "command": "npm i -g pnpm@8 && pnpm config set auto-install-peers true"
-    } ,{
+    },
+//    {
+//      "name": "pnpm setup",
+//      "command": "npm i -g pnpm@8 && pnpm config set auto-install-peers true"
+//    },
+    {
       "name": "First Setup script",
-      "command": "pnpm run first-setup"
+      "command": "pnpm run first-setup 2> /dev/null"
     }
   ],
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
