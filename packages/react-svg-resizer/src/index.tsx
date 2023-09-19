@@ -1,7 +1,6 @@
 import React, { useLayoutEffect, useState } from "react";
 import isEqual from "react-fast-compare";
 import { usePassRef } from "shared/hooks/usePassChildrenRef";
-import type { Property } from "csstype";
 
 const bboxDefault = { x: 0, y: 0, width: 0, height: 0 };
 export const getBBox = (ref: SVGGraphicsElement | null) => {
