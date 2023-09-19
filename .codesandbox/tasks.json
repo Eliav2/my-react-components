@@ -3,7 +3,7 @@
   "setupTasks": [
     {
       "name": "Initialize monorepo submodules",
-      "command": "git submodule update --recursive"
+      "command": "git submodule update --init --recursive"
     },
     {
       "name": "First Setup script",
