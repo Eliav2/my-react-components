@@ -6,10 +6,6 @@
     "first-setup": "pnpm install && pnpm run build",
     "build": "pnpm --parallel --filter \"./packages/*\" run build"
   },
-  "dependencies": {
-    "react-true-resizable": "workspace:*",
-    "shared": "workspace:*"
-  },
   "devDependencies": {
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
