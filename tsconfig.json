@@ -15,7 +15,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "noImplicitAny": false
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "declarationMap": true,
+    "sourceMap": true
   },
   "include": ["."],
   "exclude": ["node_modules"],
