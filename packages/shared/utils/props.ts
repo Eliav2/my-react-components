@@ -1,7 +1,7 @@
 import { Primitive } from "../types";
 
 export type PossiblySpecific<Prop, Spec extends string> = Prop | { [key in Spec]?: Prop };
-
+export type NonNullableProps<T> = { [P in keyof T]-?: NonNullable<T[P]> };
 /**
  * will always return a more specific type than the default
  * used to spread a prop to a more specific type
@@ -31,11 +31,18 @@ export const parsePossiblySpecific = <
   fields: [...Spec],
   defaultValue?: Default
 ): {
-  [key in Spec[number]]: Prop extends Primitive ? Prop : Prop extends { [key in keyof Spec]: infer V } ? V : Default;
+  [key in Spec[number]]: Prop extends Primitive ? NonNullable<Prop> : Prop extends { [key in keyof Spec]: infer V } ? V : Default;
 } => {
+  // Prop extends Primitive
+  //   ? { [key in Spec[number]]: Prop }
+  //   : Prop extends { [key in keyof Spec]: infer V }
+  //   ? { [key in Spec[number]]: V }
+  //   : { [key in Spec[number]]: Default } => {
   if (typeof prop === "object") {
+    // prop is an object, so we return an object with default values only for unspecified fields, and the prop's values for specified fields
     return fields.reduce((prev, field) => ({ ...prev, [field]: prop?.[field] ?? defaultValue }), {}) as any;
   } else {
+    // prop is a primitive, so we return a default object with the prop as the value of all fields
     return fields.reduce((prev, field) => ({ ...prev, [field]: prop ?? defaultValue }), {}) as any;
   }
 };

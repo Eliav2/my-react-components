@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { DependencyList, useLayoutEffect, useState } from "react";
 import isEqual from "react-fast-compare";
 import { pick } from "../utils";
 import useRerender from "./useRerender";
@@ -16,7 +16,7 @@ const posAttrs = ["left", "top", "right", "bottom", "width", "height"] as const;
  * returns position of an element AFTER IT IS MOUNTED IN THE DOM
  * also - return the last remembered position of the element if it's not in the DOM
  */
-const usePosition = (elementRef: HTMLElement | null, dependencies?): positionType | null => {
+const usePosition = (elementRef: HTMLElement | null, dependencies?: DependencyList | undefined): positionType | null => {
   // console.log("usePosition");
   const render = useRerender();
   const [position, setPosition] = useState<positionType | null>(null);
