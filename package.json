@@ -14,12 +14,12 @@
     "concurrently": "^7.6.0",
     "flow-bin": "^0.178.1",
     "prettier": "^2.8.8",
-    "type-fest": "^3.13.1",
-    "typescript": "^5.2.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "vite": "^4.4.9",
-    "shared": "workspace:*"
+    "shared": "workspace:*",
+    "type-fest": "^3.13.1",
+    "typescript": "^5.3.3",
+    "vite": "^4.4.9"
   },
   "workspaces": [
     "packages/*"
@@ -27,11 +27,11 @@
   "prettier": {
     "printWidth": 140
   },
-
   "pnpm": {
     "peerDependencyRules": {
-      "ignoreMissing": ["*"]
+      "ignoreMissing": [
+        "*"
+      ]
     }
   }
-
 }
