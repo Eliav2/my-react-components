@@ -7,20 +7,13 @@
     "build": "pnpm --parallel --filter \"./packages/*\" run build"
   },
   "devDependencies": {
-    "@types/react": "^18.2.22",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^1.3.2",
-    "babel-loader": "^8.3.0",
     "concurrently": "^7.6.0",
     "flow-bin": "^0.178.1",
     "prettier": "^2.8.8",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
     "shared": "workspace:*",
-    "type-fest": "^3.13.1",
     "typescript": "^5.3.3",
-    "vite": "^5.0.10",
-    "vitest": "^0.28.3"
+    "vite": "^5.1.3",
+    "vitest": "^0.28.5"
   },
   "workspaces": [
     "packages/*"

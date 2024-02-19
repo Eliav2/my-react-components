@@ -9,7 +9,7 @@
   "author": "eliav2",
   "license": "ISC",
   "dependencies": {
-    "react-fast-compare": "^3.2.0"
+    "react-fast-compare": "^3.2.2"
   },
   "peerDependencies": {
     "react": "^16.8.0  || >=17.0.0 || >=18.0.0"
